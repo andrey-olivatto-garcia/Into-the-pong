@@ -11,5 +11,6 @@ config_version=5
 [application]
 
 config/name="Into The Pong"
+run/main_scene="res://scenes/menu/main_menu.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"

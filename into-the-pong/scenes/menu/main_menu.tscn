@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://ch6uoaw32bisu"]
+
+[ext_resource type="Texture2D" uid="uid://p5sbhihdwrwd" path="res://sprites/background/wave_background.png" id="1_247la"]
+[ext_resource type="Texture2D" uid="uid://bxki0opk8mo5c" path="res://sprites/icon/icon.png" id="2_kiqgm"]
+[ext_resource type="Texture2D" uid="uid://df4qes1u0u03r" path="res://sprites/background/flakes.png" id="3_hj162"]
+[ext_resource type="Script" uid="uid://dpfisa64tpmwg" path="res://scripts/menu/character.gd" id="4_xn6kt"]
+[ext_resource type="Script" uid="uid://b006kpi0i608h" path="res://scripts/menu/snow_far.gd" id="6_isoef"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(576, 324)
+
+[node name="Background" type="Sprite2D" parent="Node2D"]
+texture_filter = 1
+scale = Vector2(1.08924, 1.20225)
+texture = ExtResource("1_247la")
+
+[node name="Character" type="Sprite2D" parent="Node2D"]
+texture_filter = 1
+scale = Vector2(0.366667, 0.366667)
+texture = ExtResource("2_kiqgm")
+script = ExtResource("4_xn6kt")
+
+[node name="Snow_far" type="Sprite2D" parent="Node2D"]
+texture_filter = 1
+scale = Vector2(1, 1.036)
+texture = ExtResource("3_hj162")
+script = ExtResource("6_isoef")
