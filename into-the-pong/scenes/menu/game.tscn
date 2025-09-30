@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://4ascurc284xu"]
+
+[ext_resource type="Texture2D" uid="uid://p5sbhihdwrwd" path="res://sprites/background/wave_background.png" id="1_41u37"]
+[ext_resource type="Script" uid="uid://vwkfa6gan0nt" path="res://scripts/menu/anotherback.gd" id="2_t8e1t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mj8m8"]
+size = Vector2(20, 120)
+
+[node name="Main" type="Sprite2D"]
+texture_filter = 1
+texture = ExtResource("1_41u37")
+centered = false
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(583, 324)
+texture = ExtResource("1_41u37")
+script = ExtResource("2_t8e1t")
+
+[node name="Player" type="StaticBody2D" parent="."]
+position = Vector2(50, 324)
+
+[node name="ColorRect" type="ColorRect" parent="Player"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -60.0
+offset_right = 20.0
+offset_bottom = 60.0
+grow_vertical = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(10, 0)
+shape = SubResource("RectangleShape2D_mj8m8")
+
+[node name="CPU" type="StaticBody2D" parent="."]
+position = Vector2(1082, 324)
+
+[node name="ColorRect" type="ColorRect" parent="CPU"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -60.0
+offset_right = 20.0
+offset_bottom = 60.0
+grow_vertical = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CPU"]
+position = Vector2(10, 0)
+shape = SubResource("RectangleShape2D_mj8m8")
