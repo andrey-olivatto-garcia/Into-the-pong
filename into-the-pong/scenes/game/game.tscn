@@ -1,7 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bsapvnb4xp5mj"]
+[gd_scene load_steps=13 format=3 uid="uid://bsapvnb4xp5mj"]
 
 [ext_resource type="Texture2D" uid="uid://p5sbhihdwrwd" path="res://sprites/background/wave_background.png" id="1_5i0tg"]
+[ext_resource type="Script" uid="uid://b7svifjv45njj" path="res://scripts/game/main.gd" id="1_kelw5"]
 [ext_resource type="Script" uid="uid://vwkfa6gan0nt" path="res://scripts/menu/anotherback.gd" id="2_7h61r"]
+[ext_resource type="Script" uid="uid://b374o0se5qdlj" path="res://scripts/game/player.gd" id="4_lfrn8"]
+[ext_resource type="Script" uid="uid://rp2au1mr6n0f" path="res://scripts/game/cpu.gd" id="5_5i0tg"]
+[ext_resource type="Script" uid="uid://c0pv2jnytyhp7" path="res://scripts/game/ball.gd" id="6_bdhmt"]
 [ext_resource type="FontFile" uid="uid://bimbtukopxhdm" path="res://font/hiden-certon.ttf" id="6_kp23o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mj8m8"]
@@ -17,11 +21,12 @@ size = Vector2(1152, 32)
 size = Vector2(1152, 40)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lfrn8"]
-size = Vector2(44, 648)
+size = Vector2(43, 648)
 
 [node name="Main" type="Sprite2D"]
 texture_filter = 1
 centered = false
+script = ExtResource("1_kelw5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -33,6 +38,7 @@ script = ExtResource("2_7h61r")
 
 [node name="Player" type="StaticBody2D" parent="."]
 position = Vector2(50, 324)
+script = ExtResource("4_lfrn8")
 
 [node name="ColorRect" type="ColorRect" parent="Player"]
 anchors_preset = 4
@@ -49,6 +55,7 @@ shape = SubResource("RectangleShape2D_mj8m8")
 
 [node name="CPU" type="StaticBody2D" parent="."]
 position = Vector2(1082, 324)
+script = ExtResource("5_5i0tg")
 
 [node name="ColorRect" type="ColorRect" parent="CPU"]
 anchors_preset = 4
@@ -66,6 +73,7 @@ shape = SubResource("RectangleShape2D_mj8m8")
 [node name="Ball" type="CharacterBody2D" parent="."]
 position = Vector2(576, 324)
 collision_mask = 3
+script = ExtResource("6_bdhmt")
 
 [node name="ColorRect" type="ColorRect" parent="Ball"]
 anchors_preset = 8
@@ -97,13 +105,13 @@ shape = SubResource("RectangleShape2D_kelw5")
 [node name="ScoreLeft" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreLeft"]
-position = Vector2(-20, 324)
+position = Vector2(-21, 324)
 shape = SubResource("RectangleShape2D_lfrn8")
 
 [node name="ScoreRight" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreRight"]
-position = Vector2(1174, 324)
+position = Vector2(1173.5, 324)
 shape = SubResource("RectangleShape2D_lfrn8")
 
 [node name="Hud" type="CanvasLayer" parent="."]
@@ -115,8 +123,7 @@ offset_right = 496.0
 offset_bottom = 118.0
 theme_override_fonts/font = ExtResource("6_kp23o")
 theme_override_font_sizes/font_size = 50
-text = "0
-"
+text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -127,11 +134,14 @@ offset_right = 688.0
 offset_bottom = 118.0
 theme_override_fonts/font = ExtResource("6_kp23o")
 theme_override_font_sizes/font_size = 50
-text = "0
-"
+text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="BallTimer" type="Timer" parent="."]
 one_shot = true
 autostart = true
+
+[connection signal="body_entered" from="ScoreLeft" to="." method="_on_score_left_body_entered"]
+[connection signal="body_entered" from="ScoreRight" to="." method="_on_score_right_body_entered"]
+[connection signal="timeout" from="BallTimer" to="." method="_on_ball_timer_timeout"]
